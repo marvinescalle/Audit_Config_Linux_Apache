@@ -1,6 +1,7 @@
-from audit_system import audit_system
-from audit_apache import audit_apache
+from audit_system import run_linux_audit
+from audit_apache import run_apache_audit
 from utils import setup_logger, log_info
+import logging
 
 def afficher_menu():
     print("\n=== MENU AUDIT DE SÉCURITÉ ===")
@@ -10,7 +11,15 @@ def afficher_menu():
     print("4. Quitter")
 
 def main():
-    setup_logger()
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - [%(levelname)s] - %(message)s',
+        handlers=[
+            logging.StreamHandler(), # Affiche les logs dans la console
+            logging.FileHandler('audit.log') # Enregistre dans un fichier
+        ]
+    )
+    test_logger = logging.getLogger()
     log_info("=== Lancement du script principal ===")
 
     while True:
@@ -18,12 +27,12 @@ def main():
         choix = input("Votre choix (1-4) : ").strip()
 
         if choix == "1":
-            audit_system()
+            run_linux_audit(test_logger)
         elif choix == "2":
-            audit_apache()
+            run_apache_audit(test_logger)
         elif choix == "3":
-            audit_system()
-            audit_apache()
+            run_linux_audit(test_logger)
+            run_apache_audit(test_logger)
         elif choix == "4":
             log_info("Fin du script principal.")
             break

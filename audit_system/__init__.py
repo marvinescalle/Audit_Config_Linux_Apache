@@ -1,1 +1,1 @@
-from .audit_system import audit_system
+from .audit_system import run_linux_audit
