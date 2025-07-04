@@ -1,0 +1,64 @@
+{
+    "audit_metadata": {
+        "date": "2025-07-04T10:09:18.414534",
+        "module": "audit_linux"
+    },
+    "os_info": {
+        "kernel_version": "Linux b6089d4dcd0f 5.15.0-142-generic #152-Ubuntu SMP Mon May 19 10:54:31 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+        "pretty_name": "Ubuntu 22.04.5 LTS",
+        "name": "Ubuntu",
+        "version_id": "22.04",
+        "version": "22.04.5 LTS (Jammy Jellyfish)",
+        "version_codename": "jammy",
+        "id": "ubuntu",
+        "id_like": "debian",
+        "home_url": "https://www.ubuntu.com/",
+        "support_url": "https://help.ubuntu.com/",
+        "bug_report_url": "https://bugs.launchpad.net/ubuntu/",
+        "privacy_policy_url": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+        "ubuntu_codename": "jammy"
+    },
+    "user_info": {
+        "login_users": [
+            "root",
+            "sync",
+            "testuser"
+        ],
+        "sudo_users": [
+            "testuser"
+        ],
+        "users_with_no_password": [],
+        "root_ssh_login": "Not Found"
+    },
+    "network_info": {
+        "listening_ports": "Not checked",
+        "firewall_status": "No firewall tool (UFW/iptables) found or active."
+    },
+    "file_permissions": {
+        "/etc/shadow": {
+            "current": "640",
+            "recommended": "640",
+            "is_secure": true
+        },
+        "/etc/passwd": {
+            "current": "644",
+            "recommended": "644",
+            "is_secure": true
+        },
+        "/etc/group": {
+            "current": "644",
+            "recommended": "644",
+            "is_secure": true
+        },
+        "/etc/sudoers": {
+            "current": "440",
+            "recommended": "440",
+            "is_secure": true
+        }
+    },
+    "pending_updates": {
+        "upgraded_packages": 0,
+        "newly_installed": 0,
+        "to_be_removed": 0
+    }
+}
