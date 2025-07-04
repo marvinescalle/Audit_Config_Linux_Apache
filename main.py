@@ -1,5 +1,3 @@
-# main.py
-
 from audit_system import audit_system
 from audit_apache import audit_apache
 from utils import setup_logger, log_info
@@ -27,11 +25,10 @@ def main():
             audit_system()
             audit_apache()
         elif choix == "4":
-            print("👋 Au revoir !")
             log_info("Fin du script principal.")
             break
         else:
-            print("❌ Choix invalide. Veuillez réessayer.")
+            print("Choix invalide. Veuillez réessayer.")
 
 if __name__ == "__main__":
     main()
