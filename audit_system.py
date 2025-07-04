@@ -1,4 +1,4 @@
-# audit_apache.py
+# audit_system.py
 
 import os
 import subprocess
@@ -14,48 +14,32 @@ def run_command(command):
         log_error(f"Erreur commande '{command}': {e.output.strip()}")
         return f"Erreur: {e.output.strip()}"
 
-def audit_apache():
+def audit_system():
     setup_logger()
-    log_info("Début de l'audit Apache")
+    log_info("Début de l'audit système Linux")
 
     result = {}
 
     try:
-        # 1. Version Apache
-        result["apache_version"] = run_command("apache2 -v")
-
-        # 2. Modules activés
-        result["apache_modules"] = run_command("apache2ctl -M")
-
-        # 3. Fichier de conf principal
-        result["apache_conf_path"] = "/etc/apache2/apache2.conf"
-        result["apache_conf_content"] = run_command("cat /etc/apache2/apache2.conf")
-
-        # 4. Analyse directives dangereuses
-        directives = ["Indexes", "FollowSymLinks", "AllowOverride", "ServerTokens", "ServerSignature"]
-        found = {}
-        for directive in directives:
-            cmd = f"grep -i '{directive}' /etc/apache2/apache2.conf"
-            found[directive] = run_command(cmd)
-        result["directives_sensibles"] = found
-
-        # 5. Droits sur fichiers de conf
-        result["conf_permissions"] = run_command("ls -l /etc/apache2/apache2.conf")
-
-        # 6. Racine du site web
-        result["document_root"] = run_command("apache2ctl -S | grep 'Main DocumentRoot' || grep -i 'DocumentRoot' /etc/apache2/sites-enabled/*.conf")
-
+        result["os_version"] = run_command("lsb_release -a || cat /etc/os-release")
+        result["kernel_version"] = run_command("uname -r")
+        result["uid_0_users"] = run_command("awk -F: '$3 == 0 {print $1}' /etc/passwd")
+        result["active_services"] = run_command("systemctl list-units --type=service --state=running")
+        result["listening_ports"] = run_command("ss -tuln")
+        result["permissions_passwd"] = run_command("ls -l /etc/passwd")
+        result["permissions_shadow"] = run_command("ls -l /etc/shadow")
+        result["cron_root"] = run_command("crontab -l -u root")
+        result["cron_system"] = run_command("ls -l /etc/cron*")
+        result["sudo_group"] = run_command("getent group sudo")
+        result["sshd_config"] = run_command("grep -vE '^#|^$' /etc/ssh/sshd_config 2>/dev/null")
     except Exception as e:
-        log_error(f"Erreur durant l'audit Apache : {str(e)}")
+        log_error(f"Erreur durant l'audit système : {str(e)}")
 
     os.makedirs("audits", exist_ok=True)
-    filename = f"audits/audit_apache_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    filename = f"audits/audit_systeme_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(filename, "w") as f:
         json.dump(result, f, indent=4)
 
-    log_info(f"Audit Apache terminé. Fichier généré : {filename}")
-    print(f"✅ Audit Apache terminé. Résultats enregistrés dans {filename}")
+    log_info(f"Audit système terminé. Fichier généré : {filename}")
+    print(f"✅ Audit système terminé. Résultats enregistrés dans {filename}")
     return filename
-
-if __name__ == "__main__":
-    audit_system()
