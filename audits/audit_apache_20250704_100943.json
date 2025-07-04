@@ -1,0 +1,61 @@
+{
+    "audit_metadata": {
+        "date": "2025-07-04T10:09:42.951517",
+        "module": "audit_apache"
+    },
+    "server_info": {
+        "server_version": "Apache/2.4.52 (Ubuntu)",
+        "server_built": "2025-04-03T09:05:48",
+        "server_mpm": "event",
+        "config_file": "apache2.conf"
+    },
+    "loaded_modules": [
+        "access_compat_module",
+        "alias_module",
+        "auth_basic_module",
+        "authn_core_module",
+        "authn_file_module",
+        "authz_core_module",
+        "authz_host_module",
+        "authz_user_module",
+        "autoindex_module",
+        "core_module",
+        "deflate_module",
+        "dir_module",
+        "env_module",
+        "filter_module",
+        "http_module",
+        "log_config_module",
+        "logio_module",
+        "mime_module",
+        "mpm_event_module",
+        "negotiation_module",
+        "reqtimeout_module",
+        "setenvif_module",
+        "so_module",
+        "status_module",
+        "unixd_module",
+        "version_module",
+        "watchdog_module"
+    ],
+    "config_directives": {
+        "ServerTokens": "Non trouv\u00e9",
+        "ServerSignature": "Non trouv\u00e9",
+        "TraceEnable": "Non trouv\u00e9",
+        "KeepAlive": "On",
+        "KeepAliveTimeout": "5",
+        "Timeout": "300",
+        "MaxRequestWorkers": "Non trouv\u00e9",
+        "User": "${APACHE_RUN_USER}",
+        "Group": "${APACHE_RUN_GROUP}",
+        "Listen": "443",
+        "LogLevel": "warn",
+        "ErrorLog": "${APACHE_LOG_DIR}/error.log",
+        "CustomLog": "Non trouv\u00e9",
+        "SSLEngine": "Non trouv\u00e9",
+        "SSLProtocol": "Non trouv\u00e9",
+        "SSLCipherSuite": "Non trouv\u00e9",
+        "Options": "Indexes FollowSymLinks",
+        "AllowOverride": "None"
+    }
+}
