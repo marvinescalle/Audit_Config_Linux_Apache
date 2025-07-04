@@ -1,0 +1,5 @@
+# Ignorer les fichiers générés automatiquement
+__pycache__/
+*.pyc
+audit.log
+audits/
